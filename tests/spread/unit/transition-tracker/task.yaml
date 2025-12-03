@@ -1,0 +1,13 @@
+summary: Run transition-tracker python module unit tests
+systems:
+  - ubuntu-24.04
+
+execute: |
+  pushd "$SPREAD_PATH"
+  make unit
+
+restore: |
+  if [[ -z "${CI:-}" ]]; then
+      source ${SPREAD_PATH}/tests/spread/common.sh
+      cleanup_transition_tracker
+  fi
